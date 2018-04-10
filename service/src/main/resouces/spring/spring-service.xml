@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <bean id="demoService" class="com.mark.service.DemoService">
+        </bean>
+
+        <bean id="helloService" class="com.mark.service.HelloService">
+            <property name="demoService">
+                <bean class="com.mark.service.proxy.RpcFactory" factory-method="factory">
+                    <constructor-arg name="rpcService" ref="demoService"/>
+                    <constructor-arg name="isCglib" value="true"/>
+                    <constructor-arg name="beanName" value="demoService"/>
+                </bean>
+            </property>
+        </bean>
+
+
+
+</beans>
