@@ -49,7 +49,7 @@ public class SocketClient {
             bytes = new byte[length];
             // 然后读取指定长度的消息即可
             inputStream.read(bytes);
-            System.out.println("get message from client: " + new String(bytes, "UTF-8"));
+            System.out.println("get message from server: " + new String(bytes, "UTF-8"));
 //        }
         inputStream.close();
 
@@ -100,7 +100,7 @@ public class SocketClient {
         inputStream.read(bytes);
         String jsonResult = new String(bytes, "UTF-8");
         Object result = MyProxy.parseRemoteResult(JSONObject.parseObject(jsonResult));
-        System.out.println("get message from client: " + new String(bytes, "UTF-8"));
+        System.out.println("get message from server: " + new String(bytes, "UTF-8"));
 //        }
         inputStream.close();
 
