@@ -22,29 +22,30 @@ public class MyProxy implements InvocationHandler{
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("MyProxy.invoke before");
-
-//        JSONObject jsonObject = genRemoteObj(target, method, args);
-//        System.out.println(jsonObject);
-//        JSONObject resutObject = invokeRemote(jsonObject);
-        //        Object result = parseRemoteResult(resutObject);
-
-//        String clazz = resutObject.getString("clazz");
-//        String resultJson = resutObject.getString("result");
-//        Object result = KryoTool.decode(resultJson, Class.forName(clazz));
-
 //        Object result = method.invoke(target, args);
-
-
         Object result = SocketClient.remoteExecute(target, method, args);
         System.out.println("MyProxy.invoke after");
         return result;
     }
 
-    public static Object parseRemoteResult(JSONObject jsonObject) throws Exception {
-        String clazz = jsonObject.getString("clazz");
-        String resultJson = jsonObject.getString("result");
-        Object result = KryoTool.decode(resultJson, Class.forName(clazz));
+    public Object invokeLocal(Object obj,Method method, Object[] args){
+        JSONObject jsonObject = genRemoteObj(target, method, args);
+        System.out.println(jsonObject);
+        JSONObject resutObject = invokeRemote(jsonObject);
+        Object result = parseRemoteResult(resutObject);
         return result;
+    }
+
+    public static Object parseRemoteResult(JSONObject jsonObject) {
+        try {
+            String clazz = jsonObject.getString("clazz");
+            String resultJson = jsonObject.getString("result");
+            Object result = KryoTool.decode(resultJson, Class.forName(clazz));
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static JSONObject genRemoteObj(Object obj,Method method, Object[] args){
