@@ -22,11 +22,11 @@ import java.util.concurrent.TimeUnit;
  * Created by lulei on 2018/5/28.
  */
 public class RpcServer {
-    private static final Logger logger = LoggerFactory.getLogger(RpcServer.class);
+    protected static final Logger logger = LoggerFactory.getLogger(RpcServer.class);
 
     private String serverAddress;
 
-    private Map<String,Object> handlerMap = new HashMap<>();
+    protected Map<String,Object> handlerMap = new HashMap<>();
     private static ThreadPoolExecutor threadPoolExecutor;
 
     private EventLoopGroup bossGroup = null;
