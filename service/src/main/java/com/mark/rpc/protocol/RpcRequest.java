@@ -1,4 +1,4 @@
-package com.mark.server.domain;
+package com.mark.rpc.protocol;
 
 /**
  * Created by lulei on 2018/5/22.

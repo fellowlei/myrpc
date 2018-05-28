@@ -1,12 +1,10 @@
-package com.mark.server.client;
+package com.mark.rpc.client;
 
-import com.mark.server.domain.RpcRequest;
-import com.mark.server.domain.RpcResponse;
+import com.mark.rpc.protocol.RpcRequest;
+import com.mark.rpc.protocol.RpcResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;

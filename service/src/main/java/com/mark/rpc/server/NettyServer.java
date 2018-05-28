@@ -1,6 +1,6 @@
-package com.mark.server;
+package com.mark.rpc.server;
 
-import com.mark.server.domain.*;
+import com.mark.rpc.protocol.*;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

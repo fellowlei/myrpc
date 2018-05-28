@@ -1,4 +1,4 @@
-package com.mark.server;
+package com.mark.rpc.server;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mark.service.MyProxy;

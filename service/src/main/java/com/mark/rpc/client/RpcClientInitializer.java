@@ -1,9 +1,9 @@
-package com.mark.server.client;
+package com.mark.rpc.client;
 
-import com.mark.server.domain.RpcDecoder;
-import com.mark.server.domain.RpcEncoder;
-import com.mark.server.domain.RpcRequest;
-import com.mark.server.domain.RpcResponse;
+import com.mark.rpc.protocol.RpcDecoder;
+import com.mark.rpc.protocol.RpcEncoder;
+import com.mark.rpc.protocol.RpcRequest;
+import com.mark.rpc.protocol.RpcResponse;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;

@@ -1,8 +1,6 @@
-package com.mark.server.client;
+package com.mark.rpc.client;
 
-import com.mark.server.SocketClient;
-import com.mark.server.domain.RpcRequest;
-import com.mark.service.MyProxy;
+import com.mark.rpc.protocol.RpcRequest;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

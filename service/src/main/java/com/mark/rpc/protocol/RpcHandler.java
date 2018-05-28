@@ -1,16 +1,13 @@
-package com.mark.server.domain;
+package com.mark.rpc.protocol;
 
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import net.sf.cglib.reflect.FastClass;
-import net.sf.cglib.reflect.FastMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
-import java.util.Map;
 
 /**
  * Created by lulei on 2018/5/22.

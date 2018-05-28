@@ -1,7 +1,7 @@
-package com.mark.server.client;
+package com.mark.rpc.client;
 
-import com.mark.server.domain.RpcRequest;
-import com.mark.server.domain.RpcResponse;
+import com.mark.rpc.protocol.RpcRequest;
+import com.mark.rpc.protocol.RpcResponse;
 import io.netty.channel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

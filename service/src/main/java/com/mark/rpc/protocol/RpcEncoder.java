@@ -1,4 +1,4 @@
-package com.mark.server.domain;
+package com.mark.rpc.protocol;
 
 import com.mark.service.util.KryoTool;
 import io.netty.buffer.ByteBuf;
