@@ -1,7 +1,7 @@
 package com.mark.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mark.rpc.server.SocketClient;
+import com.mark.service.net.SocketClient;
 import com.mark.service.util.KryoTool;
 
 import java.lang.reflect.InvocationHandler;
