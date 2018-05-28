@@ -1,8 +1,6 @@
 package com.mark.rpc.server;
 
 import com.mark.rpc.protocol.*;
-import com.mark.service.MyService;
-import com.mark.service.MyServiceImpl;
 import com.mark.service.UserService;
 import com.mark.service.impl.UserServiceImpl;
 import io.netty.bootstrap.ServerBootstrap;
@@ -101,7 +99,6 @@ public class RpcServer {
 
     public static void main(String[] args) throws InterruptedException {
         RpcServer rpcServer = new RpcServer("localhost:9999");
-        rpcServer.addService(MyService.class.getName(),new MyServiceImpl());
         rpcServer.addService(UserService.class.getName(),new UserServiceImpl());
         rpcServer.start();
     }
