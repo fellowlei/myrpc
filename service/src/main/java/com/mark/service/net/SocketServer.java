@@ -2,7 +2,7 @@ package com.mark.service.net;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.util.IOUtils;
-import com.mark.service.MyProxy;
+import com.mark.service.proxy.MyProxy;
 
 import java.io.IOException;
 import java.io.InputStream;

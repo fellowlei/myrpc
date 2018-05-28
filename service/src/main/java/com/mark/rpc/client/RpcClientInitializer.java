@@ -10,9 +10,10 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
 /**
- * Created by luxiaoxun on 2016-03-16.
+ * Created by lulei on 2018/5/28.
  */
 public class RpcClientInitializer extends ChannelInitializer<SocketChannel> {
+
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         ChannelPipeline cp = socketChannel.pipeline();

@@ -5,6 +5,8 @@ import com.mark.rpc.protocol.RpcResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -13,11 +15,11 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * RPCFuture for async RPC call
- * Created by luxiaoxun on 2016-03-15.
+ * Created by lulei on 2018/5/28.
  */
 public class RPCFuture implements Future<Object> {
     private static final Logger logger = LoggerFactory.getLogger(RPCFuture.class);
+
 
     private Sync sync;
     private RpcRequest request;
@@ -32,6 +34,7 @@ public class RPCFuture implements Future<Object> {
         this.request = request;
         this.startTime = System.currentTimeMillis();
     }
+
 
     @Override
     public boolean isDone() {
@@ -74,6 +77,7 @@ public class RPCFuture implements Future<Object> {
         throw new UnsupportedOperationException();
     }
 
+
     public void done(RpcResponse reponse) {
         this.response = reponse;
         sync.release(1);
@@ -83,8 +87,6 @@ public class RPCFuture implements Future<Object> {
             logger.warn("Service response time is too slow. Request id = " + reponse.getRequestId() + ". Response Time = " + responseTime + "ms");
         }
     }
-
-
 
     static class Sync extends AbstractQueuedSynchronizer {
 

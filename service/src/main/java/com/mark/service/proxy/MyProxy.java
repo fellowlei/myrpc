@@ -1,4 +1,4 @@
-package com.mark.service;
+package com.mark.service.proxy;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mark.service.net.SocketClient;

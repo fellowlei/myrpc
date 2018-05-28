@@ -2,6 +2,7 @@ package com.mark.rpc.client;
 
 import com.mark.rpc.protocol.RpcRequest;
 import com.mark.rpc.protocol.RpcResponse;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,10 +12,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by luxiaoxun on 2016-03-14.
+ * Created by lulei on 2018/5/28.
  */
 public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
     private static final Logger logger = LoggerFactory.getLogger(RpcClientHandler.class);
+
     private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
 
     private volatile Channel channel;
@@ -28,6 +30,7 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
         return remotePeer;
     }
 
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
@@ -40,11 +43,15 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
         this.channel = ctx.channel();
     }
 
+
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, RpcResponse response) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, RpcResponse response) throws Exception {
         String requestId = response.getRequestId();
-        Object result = response.getResult();
-        System.out.println(result);
+        RPCFuture rpcFuture = pendingRPC.get(requestId);
+        if(rpcFuture != null){
+            pendingRPC.remove(requestId);
+            rpcFuture.done(response);
+        }
     }
 
     @Override
@@ -53,7 +60,9 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
         ctx.close();
     }
 
-
+    public void close() {
+        channel.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+    }
 
     public RPCFuture sendRequest(RpcRequest request) {
         final CountDownLatch latch = new CountDownLatch(1);
@@ -73,6 +82,4 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
 
         return rpcFuture;
     }
-
-
 }
