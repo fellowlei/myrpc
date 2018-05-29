@@ -13,6 +13,7 @@ import java.net.InetSocketAddress;
 
 /**
  * Created by lulei on 2018/5/29.
+ * https://blog.csdn.net/linuu/article/details/51371595
  */
 public class CustomServer {
     private static final int MAX_FRAME_LENGTH = 1024 * 1024;

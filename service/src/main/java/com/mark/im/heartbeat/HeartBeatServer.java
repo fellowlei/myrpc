@@ -17,6 +17,9 @@ import io.netty.handler.timeout.IdleStateHandler;
 import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * https://blog.csdn.net/linuu/article/details/51404264
+ */
 public class HeartBeatServer {
 
     private int port;
