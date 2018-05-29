@@ -35,7 +35,9 @@ public class CustomClient {
                     });
 
             ChannelFuture future = b.connect(HOST, PORT).sync();
-            future.channel().writeAndFlush("Hello Netty Server ,I am a common client");
+            String msg = "Hello Netty Server ,I am a common client";
+            CustomMsg customMsg = new CustomMsg((byte)0xAB, (byte)0xCD, msg.length(), msg);
+            future.channel().writeAndFlush(customMsg);
             future.channel().closeFuture().sync();
         } finally {
             group.shutdownGracefully();
