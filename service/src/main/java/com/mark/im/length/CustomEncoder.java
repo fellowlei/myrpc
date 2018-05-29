@@ -1,4 +1,4 @@
-package com.mark.im;
+package com.mark.im.length;
 
 import java.nio.charset.Charset;
 

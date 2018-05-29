@@ -1,4 +1,4 @@
-package com.mark.im;
+package com.mark.im.length;
 
 /**
  * Created by lulei on 2018/5/29.
