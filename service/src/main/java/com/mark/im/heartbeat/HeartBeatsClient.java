@@ -22,6 +22,7 @@ public class HeartBeatsClient {
     public void connect(int port, String host) throws Exception {
         // Configure the client.
         EventLoopGroup group = new NioEventLoopGroup();
+        ChannelFuture future = null;
         try {
             Bootstrap b = new Bootstrap();
             b.group(group)
@@ -39,10 +40,21 @@ public class HeartBeatsClient {
                         }
                     });
 
-            ChannelFuture future = b.connect(host, port).sync();
+            future = b.connect(host, port).sync();
             future.channel().closeFuture().sync();
+
+
         } finally {
-            group.shutdownGracefully();
+//            group.shutdownGracefully();
+
+            if (null != future) {
+                if (future.channel() != null && future.channel().isOpen()) {
+                    future.channel().close();
+                }
+            }
+            System.out.println("准备重连");
+            connect(port, host);
+            System.out.println("重连成功");
         }
     }
 
