@@ -1,0 +1,11 @@
+#login
+1:mark1:mark2:content
+1:mark2:mark3:content
+
+#send to
+2:mark2:mark1:hello
+2:mark3:mark2:hello world
+
+# send to all
+3:mark3:mark2:hello world
+
