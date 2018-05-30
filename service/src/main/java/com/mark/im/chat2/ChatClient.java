@@ -30,11 +30,10 @@ public class ChatClient {
              .handler(new ChannelInitializer<SocketChannel>() {
                  @Override
                  public void initChannel(SocketChannel ch) throws Exception {
-                     ChannelPipeline p = ch.pipeline();
                      ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(65536, 0, 4, 0, 0));
                      ch.pipeline().addLast(new RpcEncoder(Message.class));
                      ch.pipeline().addLast(new RpcDecoder(Message.class));
-                     p.addLast(new ChatClientHandler());
+                     ch.pipeline().addLast(new ChatClientHandler());
                  }
              });
 
